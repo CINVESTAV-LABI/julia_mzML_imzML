@@ -1,4 +1,52 @@
 # *******************************************************************
+# Load Spectra and return a matrix
+#   fileName: Full name path
+# *******************************************************************
+"""
+    LoadImzml( fileName )
+
+Load an imzML file as a matrix. Each column stores x-pixel position,
+ y-pixel position, x-axis data and y-axis data.
+
+# Arguments
+* `fileName`: Full path name of the imzML file
+
+# Examples
+```julia
+# Load DESI MSI Carcinoma image data
+spectra = LoadImzml( "80TopL, 50TopR, 70BottomL, 60BottomR-centroid.imzML" )
+size( spectra )
+(4, 18632)
+```
+"""
+function LoadImzml( fileName )
+
+  # Open file handles
+  fileName = split( fileName, ".")[1]
+  stream   = open( fileName * ".imzML" )
+  hIbd     = open( fileName * ".ibd" )
+
+  # Get axes types and image dimensions
+  axis   = AxesConfigImg( stream )
+  imgDim = GetImgDimensions( stream )
+  format = [ axis[1].Format, axis[2].Format ]
+
+  # Locate spectrum attributes
+  start  = position( stream )  
+  attr   = GetSpectrumAttributes( stream, hIbd ) 
+
+  # Load spectra
+  seek( stream, start )
+  spectra = LoadImgData( stream, hIbd, attr, imgDim[3], format )
+
+  close( stream )
+  close( hIbd )
+  return spectra
+
+end
+
+
+# *******************************************************************
 # Get axes value type
 # *******************************************************************
 function AxesConfigImg( stream )
@@ -187,33 +235,3 @@ function LoadImgData( stream, hIbd, attr, imgDim, format )
 
 end
 
-
-# *******************************************************************
-# Load Spectra and return a matrix
-#   fileName: Full name path
-# *******************************************************************
-function LoadSpectraImg( fileName )
-
-  # Open file handles
-  fileName = split( fileName, ".")[1]
-  stream   = open( fileName * ".imzML" )
-  hIbd     = open( fileName * ".ibd" )
-
-  # Get axes types and image dimensions
-  axis   = AxesConfigImg( stream )
-  imgDim = GetImgDimensions( stream )
-  format = [ axis[1].Format, axis[2].Format ]
-
-  # Locate spectrum attributes
-  start  = position( stream )  
-  attr   = GetSpectrumAttributes( stream, hIbd ) 
-
-  # Load spectra
-  seek( stream, start )
-  spectra = LoadImgData( stream, hIbd, attr, imgDim[3], format )
-
-  close( stream )
-  close( hIbd )
-  return spectra
-
-end

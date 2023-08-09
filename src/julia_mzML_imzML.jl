@@ -1,4 +1,4 @@
-module LabiMzLib
+module julia_mzML_imzML
 
 # external dependencies
 using Libz
@@ -9,19 +9,19 @@ export LoadMzml
 # imzML Functions
 export LoadImzml
 
-# bitmap Functions
+# Bitmap functions
 export GetSlice
 export IntQuant
+export TrIQ
 export SaveBitmap
 
-# viridis color scheme
+# Viridis color scheme
 export ViridisPalette
 
-
-include( "Bitmap.jl" )
-include( "Decode64.jl" )
-include( "Viridis.jl" )
+# Source files
+include( "Common.jl" )
 include( "mzML.jl" )
 include( "imzML.jl" )
+include( "Bitmap.jl" )
 
 end

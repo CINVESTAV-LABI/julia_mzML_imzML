@@ -1,0 +1,16 @@
+name = "julia_mzML_imzML"
+uuid = "38eb50d3-2fb6-4afa-992a-964ed8562ed9"
+authors = ["I Rosas-Román <ir.rosas@licifug.ugto.mx>, Robert Winkler <robert.winkler@cinvestav.mx>"]
+version = "0.0.1-DEV"
+
+[deps]
+Libz = "2ec943e9-cfe8-584d-b93d-64dcb6d567b7"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
