@@ -9,6 +9,7 @@
    
 
    ```julia
+   using Libz
    using Pkg
    Pkg.activate( "C:/your/dowwnload/folder/julia_mzML_imzML" )
    using julia_mzML_imzML
