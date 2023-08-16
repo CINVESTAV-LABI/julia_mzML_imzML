@@ -55,7 +55,7 @@
 
 
 
-## Loading mzML files
+## Loading imzML files
 
 1. The following example loads the *DESI_MSI Carcinoma*  imzML file from a public repository.
 
