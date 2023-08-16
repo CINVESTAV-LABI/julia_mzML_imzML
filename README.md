@@ -39,7 +39,7 @@
 
    ```julia
    # Load mzML file
-   spectra  = LoadMzml( joinpath( samples_dir, "Col_1.mzML" ) )
+   spectra  = LoadMzml( joinpath( samplesDir, "Col_1.mzML" ) )
    ```
 
    Now the scans are loaded in the vector `spectra`. Each row corresponds to a single scan, the first column contains a vector with the x-axis and its corresponding y-axis is stored in the second column.
