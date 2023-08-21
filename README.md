@@ -4,10 +4,11 @@
 
 1. Download the package from [Github](http://unknown) to a known folder
 
-2. Download and Install `Libz` package running the following script
+2. Download and Install the following libraries: `Libz`, `Plots` package running the following script. this code only needs to be run the first time you run this example 
 
     ```julia
-   import Pkg; Pkg.add("Libz")
+    import Pkg; Pkg.add("Libz")
+    import Pkg; Pkg.add("Plots")
    ```
 
 3. Activate `julia_mzML_imzML` package running the following script
