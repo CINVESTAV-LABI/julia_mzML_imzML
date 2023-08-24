@@ -75,7 +75,7 @@
      joinpath( samplesDir, "ColAd_Individual.zip" ) )  
    ```
 
-2. Extract the files `80TopL, 50TopR, 70BottomL, 60BottomR-centroid` 
+2. Extract the imzML file `80TopL, 50TopR, 70BottomL, 60BottomR-centroid.imzML` is located inside the folder `80TopL, 50TopR, 70BottomL, 60BottomR`
 
 3. Load the imzML file in memory
 
@@ -105,12 +105,12 @@
 
    ![](.\test\Slice.bmp)
 
-6. You can improve the dynamic range of the image using the TrIQ algorithm
+6. You can improve the dynamic range of the image using the TrIQ algorithm.
 
    
    ```julia
    # Improve dynamic range with TrIQ alorithm
-   SaveBitmap( joinpath( data_dir, "TrIQ.bmp" ),
+   SaveBitmap( joinpath( samplesDir, "TrIQ.bmp" ),
      TrIQ( slice, 256, 0.95 ),
      ViridisPalette )  
    ```
