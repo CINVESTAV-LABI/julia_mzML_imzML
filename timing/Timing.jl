@@ -2,10 +2,34 @@
 # Activate imzML package
 # ********************************************************************
 
-using  Pkg
+using Pkg
 
-Pkg.activate( "C:/Users/LABI/Documents/_LABI/IR3/imzML_Julia/Library/julia_mzML_imzML" )
+import Pkg; Pkg.add("Libz")
+import Pkg; Pkg.add("Plots")
+
+using Libz
+Pkg.activate( "../../julia_mzML_imzML" )
 using julia_mzML_imzML
+
+# Data repository
+#Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set]. 
+#Zenodo. https://doi.org/10.5281/zenodo.10084132
+
+#The script assumes the following directory structure
+
+#rob@uga-itx ~> tree julia* -L 1
+#julia_example-data
+#├── AP-SMALDI_mouse_urinary_bladder
+#└── mzML
+#julia_mzML_imzML
+#├── docs
+#├── LICENSE
+#├── Manifest.toml
+#├── Project.toml
+#├── README.md
+#├── src
+#├── test
+#└── timing
 
 
 # ********************************************************************
@@ -13,7 +37,7 @@ using julia_mzML_imzML
 # ********************************************************************
 
 # Image load
-data_dir = "C:/Users/LABI/Desktop/Download"
+data_dir = "../../julia_example-data/mzML"
 mzML     = [ "Col_1.mzML", "Cytochrome_C.mzML", "T9_A1.mzML" ]
 
 function MzmlTime( fileName, reps )

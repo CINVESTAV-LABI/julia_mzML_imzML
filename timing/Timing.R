@@ -16,17 +16,12 @@ LoadingTime <- function ( fileName ) {
   
 }
 
-#Römpp A, Guenther S, Schober Y, Schulz O, Takats Z, Kummer W, Spengler B.
-#ProteomeXchange dataset PXD001283. 2014.
-#http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD001283
-#ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2014/11/PXD001283
-#https://www.ebi.ac.uk/pride/archive/projects/PXD001283
-#Publication
-#DOI: 10.1002/anie.200905559, PubMed: 20397170,
-#Des: Römpp A, Guenther S, Schober Y, Schulz O, Takats Z, Kummer W, Spengler B;
-#Histology by mass spectrometry: label-free tissue characterization obtained
-#from high-accuracy bioanalytical imaging., Angew Chem Int Ed Engl, 2010 May 17, 49, 22, 3834-8
+# Data repository
+#Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set]. 
+#Zenodo. https://doi.org/10.5281/zenodo.10084132
 
-data_dir <- "../julia_example-data/bladder"
+data_dir <- "../../julia_example-data/imzML_AP_SMALDI"
 fileName <- "HR2MSImouseurinarybladderS096.imzML"
 time     <- LoadingTime( file.path( data_dir, fileName ) )
+
+# Ubuntu 23.04 16GB, Intel® Celeron® N5105 × 4 [1] 1.284737 1.241130 1.212906 1.251302 1.285321 1.288718 1.329186 1.317943 1.452790 1.275222
