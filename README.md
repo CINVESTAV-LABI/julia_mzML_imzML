@@ -117,4 +117,7 @@
 
    ![](.\test\TrIQ.bmp)
 
- 
+ # Example data
+
+Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set]. 
+Zenodo. <https://doi.org/10.5281/zenodo.10084132>
