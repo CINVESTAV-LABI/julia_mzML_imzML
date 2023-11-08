@@ -75,7 +75,7 @@
      joinpath( samplesDir, "ColAd_Individual.zip" ) )  
    ```
 
-2. Extract the imzML file `80TopL, 50TopR, 70BottomL, 60BottomR-centroid.imzML` is located inside the folder `80TopL, 50TopR, 70BottomL, 60BottomR`
+2. Extract the imzML file `80TopL, 50TopR, 70BottomL, 60BottomR-centroid.imzML` is located inside the folder `80TopL, 50TopR, 70BottomL, 60BottomR` **Note: There is another imzML sample files inside the folder** 
 
 3. Load the imzML file in memory
 
