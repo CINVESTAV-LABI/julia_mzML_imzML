@@ -1,8 +1,8 @@
 # julia_mzML_imzML
 
-## Local Installing
+## Local Installation
 
-1. Download the package from [Github](http://unknown) to a known folder
+1. Download the package from <https://github.com/CINVESTAV-LABI/julia_mzML_imzML>.
 
 2. Download and Install the following libraries: `Libz`, `Plots` package running the following script. this code only needs to be run the first time you run this example 
 
