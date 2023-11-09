@@ -44,19 +44,25 @@ cd( "../Downloads/" )
 data_dir = "../julia_example-data/mzML"
 mzML     = [ "Col_1.mzML", "Cytochrome_C.mzML", "T9_A1.mzML" ]
 
-# Define output file
+# Define output file, load spectra and plot
 
 Test1= string(mzML[1],".pdf")
 spectra  = LoadMzml( joinpath(data_dir, mzML[1] ) )
-mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+mz =  plot( spectra[1,124], spectra[2,124], seriestype=:sticks, lc=:black, legend=false )
 xlabel!("m/z")
 ylabel!("intensity")
 hline!([0], lc=:black) 
 savefig(mz, Test1)
 
+Test1BPC= string(mzML[1],"_BPC.pdf")
+mz =  plot( maximum(spectra[2,:]), lc=:blue, legend=false )
+xlabel!("scan")
+ylabel!("base peak intensity")
+savefig(mz, Test1BPC)
+
 Test2= string(mzML[2],".pdf")
 spectra  = LoadMzml( joinpath(data_dir, mzML[2] ) )
-mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+mz =  plot( spectra[1,8], spectra[2,8], seriestype=:sticks, lc=:black, legend=false )
 xlabel!("m/z")
 ylabel!("intensity")
 hline!([0], lc=:black) 
@@ -64,7 +70,7 @@ savefig(mz, Test2)
 
 Test3= string(mzML[3],".pdf")
 spectra  = LoadMzml( joinpath(data_dir, mzML[3] ) )
-mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+mz =  plot( spectra[1,8], spectra[2,8], seriestype=:sticks, lc=:black, legend=false )
 xlabel!("m/z")
 ylabel!("intensity")
 hline!([0], lc=:black) 
