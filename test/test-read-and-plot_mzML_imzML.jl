@@ -4,11 +4,13 @@
 
 using Pkg
 
-# import Pkg; Pkg.add("Libz")
-# import Pkg; Pkg.add("Plots")
+import Pkg; Pkg.add("Libz")
+import Pkg; Pkg.add("Plots")
 
 using Libz
-Pkg.activate("/home/rob/julia_mzML_imzML")
+using Plots
+
+Pkg.activate("../julia_mzML_imzML")
 using julia_mzML_imzML
 
 # Data repository
@@ -29,39 +31,46 @@ using julia_mzML_imzML
 #├── test
 #└── timing
 
+
+# Output directory
+cd( "../Downloads/" )
+
 # ********************************************************************
-# Timing mzML
+# Reading and printing mzML spectra (single, multile scans, LC-MS
 # ********************************************************************
 
-# Image load
-data_dir = "/home/rob/julia_example-data/mzML"
+# Load data
+
+data_dir = "../julia_example-data/mzML"
 mzML     = [ "Col_1.mzML", "Cytochrome_C.mzML", "T9_A1.mzML" ]
 
-function MzmlTime( fileName, reps )
+# Define output file
 
-	spectra = []
-	
-	@time begin
-		# Load mzML file
-		for i = 1:reps
-			spectra  = LoadMzml( fileName )
-		end
-	end
-	
-	return spectra
-	
-end
+Test1= string(mzML[1],".pdf")
+spectra  = LoadMzml( joinpath(data_dir, mzML[1] ) )
+mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+xlabel!("m/z")
+ylabel!("intensity")
+hline!([0], lc=:black) 
+savefig(mz, Test1)
 
-MzmlTime( joinpath( data_dir, mzML[1] ), 10 )
+Test2= string(mzML[2],".pdf")
+spectra  = LoadMzml( joinpath(data_dir, mzML[2] ) )
+mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+xlabel!("m/z")
+ylabel!("intensity")
+hline!([0], lc=:black) 
+savefig(mz, Test2)
 
-#### MacOS 13.6.1 16GB, Intel® i7 7820HQ @2.9 GHz x 4 SSD up to 6gb/s  3.047290 seconds
+Test3= string(mzML[3],".pdf")
+spectra  = LoadMzml( joinpath(data_dir, mzML[3] ) )
+mz =  plot( spectra[1,4], spectra[2,4], seriestype=:sticks, lc=:black, legend=false )
+xlabel!("m/z")
+ylabel!("intensity")
+hline!([0], lc=:black) 
+savefig(mz, Test3)
 
-
-# ********************************************************************
-# Timing imzML
-# ********************************************************************
-
-# Auxiliar function for testing image load
+# Help function for Image loading and saving
 function SaveSlice( path, prefix, spectra, mz, tolerance, divisor )
 
   for k in 1:length(mz)
@@ -73,14 +82,16 @@ function SaveSlice( path, prefix, spectra, mz, tolerance, divisor )
 
     # Image render & save  
     SaveBitmap( name,
-      IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance ) ),
+      TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
       ViridisPalette )
   end
 
 end
 
-# Image load
-cd( "/home/rob/Downloads/" )
+# ********************************************************************
+# Reading and printing imzML images
+# ********************************************************************
+
 data_dir = "/home/rob/julia_example-data/"
 imzML    = [ 
   "imzML_AP_SMALDI/HR2MSImouseurinarybladderS096.imzML", 
