@@ -88,7 +88,8 @@ function SaveSlice( path, prefix, spectra, mz, tolerance, divisor )
 
     # Image render & save  
     SaveBitmap( name,
-      TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
+#     IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance)),
+     TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
       ViridisPalette )
   end
 
@@ -130,9 +131,5 @@ SaveSlice( pwd(), "Arabidopsis", spectra, [2090, 4360, 4471], 0.05, 10 )
 SaveSlice( pwd(), "Chili", spectra, [621, 841, 3061], 0.1, 10 )
 
 
-#### MacOS 13.6.1 16GB, Intel® i7 7820HQ @2.9 GHz x 4 SSD up to 6gb/s ####
-# Mouse: 9.765739 seconds
-# Carcinoma: 1.445137 seconds
-# Arabidopsis: 5.180078 seconds
-# Chili: 3.797170 seconds
+
 

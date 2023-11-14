@@ -202,8 +202,6 @@ function IntQuant( slice )
 
 end
 
-
-
 # ********************************************************************
 # TrIQ, Discretize image amplitude in 0:255 range, grouping outliers
 # in the highest bin
@@ -220,7 +218,7 @@ function GetOutlierThres( slice, prob )
     bins    = 100
     step    = ( upp + (upp-low)/(bins-1) - low ) / bins
   else
-    bins   = ceiling( upp ) - floor( low ) + 1
+    bins   = ceil( upp ) - floor( low ) + 1
     step   = 1
   end
 
