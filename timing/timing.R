@@ -39,8 +39,9 @@ ImzmlLoadingTime <- function ( fileName, reps ) {
   }
 	
 	# Display results
-	print( "The loading time is:" )
+	print( "Loading time:" )
 	print( elapsed )
+	write( elapsed, file="loading-times.txt", append=TRUE)
 	
 	# Save TrIQ
 	
