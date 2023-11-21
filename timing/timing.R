@@ -2,10 +2,10 @@ library( viridis )
 library( MALDIquant )
 library( MALDIquantForeign )
 
-#Change to R script directory
+# Change to R script directory
 #setwd( "~/julia_mzML-imzML/timing" )
 
-#TrIQ algorithm, see
+# TrIQ algorithm, see
 #Rosas-Román I, Winkler R. Contrast optimization of mass spectrometry imaging (MSI) data visualization by threshold intensity quantization (TrIQ).
 #PeerJ Comput Sci. 2021 Jun 9;7:e585. doi: 10.7717/peerj-cs.585. PMID: 34179452; PMCID: PMC8205298.
 source( "TrIQ.R" )
@@ -14,7 +14,7 @@ source( "TrIQ.R" )
 #Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set].
 #Zenodo. https://doi.org/10.5281/zenodo.10084132
 
-#The script assumes the following directory structure
+# The script assumes the following directory structure
 #rob@uga-itx ~> tree julia* -L 1
 #julia_example-data
 #├── imzML_AP_SMALDI
@@ -34,15 +34,15 @@ ImzmlLoadingTime <- function ( fileName, reps ) {
 
   for( i in 1:reps ) {
     start_time <- Sys.time()
+    write( date(), file="loading-times.txt", append=TRUE)
     spectra <- MALDIquantForeign::importImzMl( fileName, removeEmptySpectra = FALSE )
     elapsed[i] <- Sys.time() - start_time
   }
 	
 	# Display results
-	print( "Loading time:" )
-	print( elapsed )
 	write( elapsed, file="loading-times.txt", append=TRUE)
-	
+	write( mean(elapsed), file="loading-times.txt", append=TRUE)
+
 	# Save TrIQ
 	
   return( spectra )
@@ -60,22 +60,30 @@ imzML    <- c(
 specList <- ImzmlLoadingTime( file.path( data_dir, imzML[1] ), 10 )
 imgList  <- GetSlice( c( 741.53, 743.54, 798.54 ), specList, 0.005 )
 dim( imgList ) <- c(3, 1)
+pdf("mouse_bladder_TrIQ.pdf")
 PlotSlices( GlobalTrIQ( imgList, 256, 0.98 ), 256 )
+dev.off()
 
 # DESI Carcinoma
 specList <- ImzmlLoadingTime( file.path( data_dir, imzML[2] ), 10 )
 imgList  <- GetSlice( c( 885.55 ), specList, 0.005 )
 dim( imgList ) <- c(1, 1)
+pdf("carcinoma_TrIQ.pdf")
 PlotSlices( GlobalTrIQ( imgList, 256, 0.98 ), 256 )
+dev.off()
 
 # LAESI Arabidopsis
 specList <- ImzmlLoadingTime( file.path( data_dir, imzML[3] ), 10 )
 imgList  <- GetSlice( c( 209, 436, 447.1 ), specList, 0.05 )
 dim( imgList ) <- c(3, 1)
+pdf("Arabidopsis_TrIQ.pdf")
 PlotSlices( GlobalTrIQ( imgList, 64, 0.98 ), 64 )
+dev.off()
 
 # LTP Chili
 specList <- ImzmlLoadingTime( file.path( data_dir, imzML[4] ), 10 )
 imgList  <- GetSlice( c( 62.1, 84.1, 306.1 ), specList, 0.05 )
 dim( imgList ) <- c(3, 1)
+pdf("chilli_TrIQ.pdf")
 PlotSlices( GlobalTrIQ( imgList, 128, 0.98 ), 128 )
+dev.off()

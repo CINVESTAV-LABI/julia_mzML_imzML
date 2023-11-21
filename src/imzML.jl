@@ -1,3 +1,4 @@
+# include( "Common.jl" );
 # *******************************************************************
 # Load Spectra and return a matrix
 #   fileName: Full name path
@@ -22,7 +23,7 @@ size( spectra )
 function LoadImzml( fileName )
 
   # Open file handles
-  fileName = split( fileName, ".")[1]
+  fileName = split( fileName, "." )[1]
   stream   = open( fileName * ".imzML" )
   hIbd     = open( fileName * ".ibd" )
 
@@ -125,7 +126,7 @@ function  GetSpectrumTag( stream )
   while true
     
     value = match( r"[^=]+=\"([^\"]+)\"", tag.captures[1][first:end] )
-    if value == nothing
+    if value === nothing
       break
     end
     first  += value.offsets[1] + length( value.captures[1] )
@@ -166,7 +167,7 @@ function GetSpectrumAttributes( stream, hIbd )
 
   # Get axis order 
   offset  = position( stream )
-  tag     = FindTag( stream, r"^\s+<referenceableParamGroupRef(.+)" )
+  tag     = FindTag( stream, r"^\s*<referenceableParamGroupRef(.+)" )
   value   = GetAttribute( tag.captures[1], "ref" )
   skip[3] = ( value.captures[1] == "intensityArray" ) + 3
   skip[4] = xor( skip[3], 7 )
@@ -191,7 +192,7 @@ function GetSpectrumAttributes( stream, hIbd )
   end
 
   # Compute characters to skip 
-  FindTag( stream, r"^\s+</spectrum" )
+  FindTag( stream, r"^\s*</spectrum" )
   skip[8] = position( stream ) - offset
   return skip
 
@@ -205,6 +206,7 @@ function LoadImgData( stream, hIbd, attr, imgDim, format )
 
   # Reserve spectra memory & update IBD seek offset
   spectra = Array{Any}( undef, ( 4, imgDim ) )
+  contador = 0;
 
   for k in 1:imgDim
 
@@ -234,4 +236,3 @@ function LoadImgData( stream, hIbd, attr, imgDim, format )
   return spectra
 
 end
-

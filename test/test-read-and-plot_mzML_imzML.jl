@@ -129,7 +129,3 @@ SaveSlice( pwd(), "Arabidopsis", spectra, [2090, 4360, 4471], 0.05, 10 )
 
 @time spectra = ImzmlTime( joinpath( data_dir, imzML[4] ), 10 )
 SaveSlice( pwd(), "Chili", spectra, [621, 841, 3061], 0.1, 10 )
-
-
-
-

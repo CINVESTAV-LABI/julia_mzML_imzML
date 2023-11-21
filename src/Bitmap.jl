@@ -2,7 +2,7 @@
 # SaveBitmap
 # ********************************************************************
 """
-    `SaveBitmap( name, pixMap, colorTable )`
+    SaveBitmap( name, pixMap, colorTable )
 
 Save a discretized imzML slice as a bitmap file
 
@@ -123,7 +123,7 @@ end
 #   tolerance: bi-axial tolerance to find mass
 # ********************************************************************
 """
-    `GetSlice( imzML, mass, tolerance )`
+    GetSlice( imzML, mass, tolerance )
 
 Extract a mz-image from an imzML image data array loaded with
  `LoadImzml` function. The resulting image array preserves the same
@@ -165,7 +165,7 @@ end
 #   slice: Image matriz in measured arbitrary units
 # ********************************************************************
 """
-    `IntQuant( slice )`
+    IntQuant( slice )
 
 Zero Memory intensity quantizer. Discretize the image?s continuos
  intensity range in discrete bins from 0 to 255 gray levels.
@@ -202,6 +202,8 @@ function IntQuant( slice )
 
 end
 
+
+
 # ********************************************************************
 # TrIQ, Discretize image amplitude in 0:255 range, grouping outliers
 # in the highest bin
@@ -215,10 +217,10 @@ function GetOutlierThres( slice, prob )
 
   # Compute histogram's bin count & separation
   if ( upp - low + 1 ) >= 100
-    bins    = 100
+    bins    = convert( Int32, 100 )
     step    = ( upp + (upp-low)/(bins-1) - low ) / bins
   else
-    bins   = ceil( upp ) - floor( low ) + 1
+    bins   = convert( Int32, ceil( upp ) - floor( low ) + 1 )
     step   = 1
   end
 
@@ -291,7 +293,7 @@ end
 #    prob: Proportion of pixesl to take into account in discretization
 # ********************************************************************
 """
-    `TrIQ( slice, depth, prob = 0.98 )`
+    TrIQ( slice, depth, prob = 0.98 )
 
 TrIQ intensity quantizer as described in _DOI 10.7717/peerj-cs.585_.
  Discretize the image?s continuos intensity range in discrete bins
