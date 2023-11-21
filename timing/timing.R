@@ -2,10 +2,10 @@ library( viridis )
 library( MALDIquant )
 library( MALDIquantForeign )
 
-#Change to R script directory
+# Change to R script directory
 #setwd( "~/julia_mzML-imzML/timing" )
 
-#TrIQ algorithm, see
+# TrIQ algorithm, see
 #Rosas-Román I, Winkler R. Contrast optimization of mass spectrometry imaging (MSI) data visualization by threshold intensity quantization (TrIQ).
 #PeerJ Comput Sci. 2021 Jun 9;7:e585. doi: 10.7717/peerj-cs.585. PMID: 34179452; PMCID: PMC8205298.
 source( "TrIQ.R" )
@@ -14,7 +14,7 @@ source( "TrIQ.R" )
 #Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set].
 #Zenodo. https://doi.org/10.5281/zenodo.10084132
 
-#The script assumes the following directory structure
+# The script assumes the following directory structure
 #rob@uga-itx ~> tree julia* -L 1
 #julia_example-data
 #├── imzML_AP_SMALDI

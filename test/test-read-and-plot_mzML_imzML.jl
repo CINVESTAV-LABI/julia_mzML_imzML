@@ -88,8 +88,8 @@ function SaveSlice( path, prefix, spectra, mz, tolerance, divisor )
 
     # Image render & save  
     SaveBitmap( name,
-     IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance)),
-#     TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
+#     IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance)),
+     TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
       ViridisPalette )
   end
 
