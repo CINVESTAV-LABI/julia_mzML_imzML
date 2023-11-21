@@ -88,8 +88,8 @@ function SaveSlice( path, prefix, spectra, mz, tolerance, divisor )
 
     # Image render & save  
     SaveBitmap( name,
-#     IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance)),
-     TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
+     IntQuant( GetSlice( spectra, mz[k] / divisor, tolerance)),
+#     TrIQ( GetSlice( spectra, mz[k] / divisor, tolerance ) , 256, 0.95),
       ViridisPalette )
   end
 
@@ -129,7 +129,3 @@ SaveSlice( pwd(), "Arabidopsis", spectra, [2090, 4360, 4471], 0.05, 10 )
 
 @time spectra = ImzmlTime( joinpath( data_dir, imzML[4] ), 10 )
 SaveSlice( pwd(), "Chili", spectra, [621, 841, 3061], 0.1, 10 )
-
-
-
-
