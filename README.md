@@ -1,6 +1,7 @@
-# julia_mzML_imzML
+julia_mzML_imzML
+================
 
-## Local Installation
+# Local Installation
 
 1. Download the package from <https://github.com/CINVESTAV-LABI/julia_mzML_imzML>.
 
@@ -13,8 +14,6 @@
 
 3. Activate `julia_mzML_imzML` package running the following script
 
-   
-
    ```julia
    using Libz
    using Pkg
@@ -24,9 +23,7 @@
 
    `C:/your/dowwnload/folder` is the path on your computer, where the Github repository was downloaded. Now your are able to execute the test scripts.
 
-
-
-## Loading mzML files
+# Loading mzML files
 
 1. Make sure you have a mzML file. In this example, we provide a script for downloading available public mzML files.
 
@@ -58,11 +55,8 @@
    using Plots
    plot( spectra[1,4], spectra[2,4] )
    ```
-   ![](.\test\mzML.png)
 
-
-
-## Loading imzML files
+# Loading imzML files
 
 1. The following example loads the *DESI_MSI Carcinoma*  imzML file from a public repository.
 
@@ -101,23 +95,22 @@
      ViridisPalette )
    ```
 
-   The following image will be created in your `samplesDir` folder
-
-   ![](.\test\Slice.bmp)
-
 6. You can improve the dynamic range of the image using the TrIQ algorithm.
 
-   
    ```julia
    # Improve dynamic range with TrIQ alorithm
    SaveBitmap( joinpath( samplesDir, "TrIQ.bmp" ),
      TrIQ( slice, 256, 0.95 ),
      ViridisPalette )  
    ```
-
-   ![](.\test\TrIQ.bmp)
-
- # Example data
+# Example data
 
 Robert Winkler. (2023). mzML mass spectrometry and imzML mass spectrometry imaging test data [Data set]. 
 Zenodo. <https://doi.org/10.5281/zenodo.10084132>
+
+# Reference
+
+**Technical Note: mzML and imzML Libraries for Processing Mass Spectrometry Data with the High-Performance Programming Language Julia**  
+Ignacio Rosas-Román, Héctor Guillén-Alonso, Abigail Moreno-Pedraza, and Robert Winkler  
+Analytical Chemistry Article ASAP  
+[DOI: 10.1021/acs.analchem.3c05853](https://doi.org/10.1021/acs.analchem.3c05853)
