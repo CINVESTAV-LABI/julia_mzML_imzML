@@ -23,8 +23,9 @@ size( spectra )
 function LoadImzml( fileName )
 
   # Open file handles
-  fileName = split( fileName, "." )[1]
-  stream   = open( fileName * ".imzML" )
+  fileName = isfile(fileName) ?
+        splitext( fileName, "." )[1] : error("provided path is not a file")
+  stream   = open( fileName * ".imzML" ) 
   hIbd     = open( fileName * ".ibd" )
 
   # Get axes types and image dimensions
