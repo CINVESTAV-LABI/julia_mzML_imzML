@@ -317,7 +317,7 @@ The following image will be created on your hard disk
 
 ![](./TrIQ.bmp)
 """
-function TrIQ( slice, depth, prob = 0.98 )
+function TrIQ( slice, depth, prob )
 
   return  SetPixelDepth(
     slice,
