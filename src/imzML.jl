@@ -23,17 +23,10 @@ size( spectra )
 function LoadImzml( fileName )
 
   # Open file handles
-   if !isfile(fileName)
-        error("provided path is not a file")
-    end
-
-    if endswith(fileName, ".imzML")
-        stream = open(fileName)
-        hIbd = open(replace(fileName, ".imzML" => ".ibd"))
-    else
-        stream = open(fileName * ".imzML")
-        hIbd = open(fileName * ".ibd")
-    end
+  fileName = isfile(fileName) ?
+        splitext( fileName, "." )[1] : error("provided path is not a file")
+  stream   = open( fileName * ".imzML" ) 
+  hIbd     = open( fileName * ".ibd" )
 
   # Get axes types and image dimensions
   axis   = AxesConfigImg( stream )
